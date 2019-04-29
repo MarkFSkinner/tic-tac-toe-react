@@ -1,0 +1,142 @@
+$primary-color: #555;
+
+body {
+    background-color: $primary-color;
+    //color: black;
+}
+
+.container {
+    background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+
+
+
+.square { //changed from markers
+    font-size: 3rem;
+    //position: absolute;
+    /*top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;*/
+    padding-top: 1.563rem; //25px
+}
+
+.square {
+    border: 1px solid black;
+    //position: relative;
+    //width: 10%;
+    //padding-top: 15%; /* 1:1 Aspect Ratio */
+    height: 9rem;
+}
+
+.top-row {
+    margin-top: 1rem;
+}
+
+.bottom-row {
+    margin-bottom: 2rem;
+}
+
+.contol-btns {
+    //border: 1px solid red;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+#replay, #reset {
+    //margin: auto;
+    //margin-bottom: 2rem;
+    //cursor: pointer;
+}
+
+
+#menu-holder {
+    position: absolute;
+    width:100%;
+    //border: 1px solid red;
+    //height: 500px;
+    top: 85px;
+    margin-left: -15px;
+}
+
+#menu {
+    //display: none;
+    width: 300px;
+    //top: 135px;
+    //opacity: 0.5;
+    background-color: rgba(63, 121, 191, 0.9);
+    //background-color: yellow;
+    //position: absolute;
+    //left: 37%;
+    //left: 50%;
+    //margin-left: -100px;
+    margin: auto;
+    //margin-right:auto;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+    #menu {
+        left: 8%;
+    }
+}
+
+#result {
+    display: none;
+}
+
+.animated {
+    animation-duration: 2.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: 3;
+}
+
+@keyframes pulse {
+    0% {
+    transform: scale(1); }
+    50% {
+    transform: scale(1.1); }
+    100% {
+    transform: scale(1); } }
+    .pulse {
+    animation-name: pulse;
+    animation-duration: 1s;
+}
+
+.selection-prompt {
+    font-size: 1.5rem;
+}
+
+.players-prompt, .token-prompt {
+    display: inline-block;
+}
+
+.token-prompt {
+    //display: inline-block;
+    display: none;
+}
+
+#player-x, #player-o {
+    //cursor:pointer;
+}
+
+.difficulty-prompt {
+    display: none;
+}
+
+#current-player {
+    display: none;
+    font-size: 1.5rem;
+}
