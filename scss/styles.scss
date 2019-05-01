@@ -16,7 +16,8 @@ body {
 }
 
 #main-square {
-    //background-color: hsl(0, 0%, 95%);
+    width: 90%;
+    margin: auto;
 }
 
 .square {
@@ -36,10 +37,6 @@ body {
     margin-bottom: 2rem;
 }
 
-.btn {
-    cursor: pointer;
-}
-
 .contol-btns {
     margin: auto;
     margin-bottom: 2rem;
@@ -56,13 +53,13 @@ body {
     background-color: $secondary-color;
     opacity: 0.9;
     width: 18.75rem; //300px
+    max-width: 95%;
     margin: auto;
     padding-top: 4.688rem; //75px
     padding-bottom: 4.688rem; //75px
     padding-left: 1rem; //12px
     padding-right: 1rem; //12px
     text-align: center;
-    //border-radius: 0.3125rem; //5px
     color: white;
     font-size: 2rem;
 }
@@ -117,13 +114,31 @@ body {
 }
 
 .btn-custom {
-  border-radius: 0rem;
-  background-color: $accent-color;
-  color: #fff;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  cursor: pointer;
+    border-radius: 0rem;
+    background-color: $accent-color;
+    color: #fff;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    cursor: pointer;
 }
 
 .btn-custom:hover {
-  background-color: $complementary-color;
+    background-color: $complementary-color;
+}
+
+@media screen and (min-width: 576px) {
+    #main-square {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #main-square {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #main-square {
+        width: 50%;
+    }
 }

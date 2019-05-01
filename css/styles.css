@@ -8,6 +8,10 @@ body {
   margin-top: 2rem;
   margin-bottom: 1.25rem; }
 
+#main-square {
+  width: 90%;
+  margin: auto; }
+
 .square {
   background-color: #f2f2f2;
   font-size: 3rem;
@@ -21,9 +25,6 @@ body {
 
 .bottom-row {
   margin-bottom: 2rem; }
-
-.btn {
-  cursor: pointer; }
 
 .contol-btns {
   margin: auto;
@@ -39,6 +40,7 @@ body {
   background-color: #66B9BF;
   opacity: 0.9;
   width: 18.75rem;
+  max-width: 95%;
   margin: auto;
   padding-top: 4.688rem;
   padding-bottom: 4.688rem;
@@ -93,5 +95,15 @@ body {
 
 .btn-custom:hover {
   background-color: #EEAA7B; }
+
+@media screen and (min-width: 576px) {
+  #main-square {
+    width: 80%; } }
+@media screen and (min-width: 768px) {
+  #main-square {
+    width: 65%; } }
+@media screen and (min-width: 992px) {
+  #main-square {
+    width: 50%; } }
 
 /*# sourceMappingURL=styles.css.map */
