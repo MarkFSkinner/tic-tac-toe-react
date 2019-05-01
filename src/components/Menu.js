@@ -12,10 +12,10 @@ const Menu = props => (
       </div>
       <div className='selection-prompt token-prompt'>Please Select Token for Player 1:</div>
       <div className='token-prompt'>
-        <div id='player-x' className='btn btn-custom btn-lg'>X</div>
+        <div id='player-x' className='btn btn-custom btn-lg' onClick={props.selectPlayerToken}>X</div>
       </div>
       <div className='token-prompt'>
-        <div id='player-o' className='btn btn-custom btn-lg'>O</div>
+        <div id='player-o' className='btn btn-custom btn-lg' onClick={props.selectPlayerToken}>O</div>
       </div>
       <div className='selection-prompt difficulty-prompt'>Please Select Difficulty:</div>
       <div className='difficulty-prompt'>
