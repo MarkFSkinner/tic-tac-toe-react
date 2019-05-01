@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tic Tac Toe</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
@@ -13,34 +15,36 @@
         <div class="row">
           <div id="current-player" class="col-12"></div>
         </div>
-        <div class="row">
-          <div id="0" class="offset-3 col-2 square top-row">
+        <div id='main-square'>
+          <div class="row">
+            <div id="0" class="offset-3 col-2 square top-row">
+            </div>
+            <div id="1" class="col-2 square top-row">
+            </div>
+            <div id="2" class="col-2 square top-row">
+            </div>
           </div>
-          <div id="1" class="col-2 square top-row">
+          <div class="row">
+            <div id="3" class="offset-3 col-2 square">
+            </div>
+            <div id="4" class="col-2 square">
+            </div>
+            <div id="5" class="col-2 square">
+            </div>
           </div>
-          <div id="2" class="col-2 square top-row">
-          </div>
-        </div>
-        <div class="row">
-          <div id="3" class="offset-3 col-2 square">
-          </div>
-          <div id="4" class="col-2 square">
-          </div>
-          <div id="5" class="col-2 square">
-          </div>
-        </div>
-        <div class="row">
-          <div id="6" class="offset-3 col-2 square bottom-row">
-          </div>
-          <div id="7" class="col-2 square bottom-row">
-          </div>
-          <div id="8" class="col-2 square bottom-row">
+          <div class="row">
+            <div id="6" class="offset-3 col-2 square bottom-row">
+            </div>
+            <div id="7" class="col-2 square bottom-row">
+            </div>
+            <div id="8" class="col-2 square bottom-row">
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="contol-btns">
-            <div id="replay" class="btn btn-primary" accesskey="p">Play Again</div>
-            <div id="reset" class="btn btn-primary" accesskey="r">Reset</div>
+            <div id="replay" class="btn btn-custom" accesskey="p">Play Again</div>
+            <div id="reset" class="btn btn-custom" accesskey="r">Reset</div>
           </div>
         </div>
 
@@ -48,27 +52,27 @@
           <div id="menu">
             <div class="selection-prompt players-prompt">Please Select # of Players:</div>
             <div class="players-prompt">
-              <div id="players-one" class="btn btn-primary btn-lg">1</div>
+              <div id="players-one" class="btn btn-custom btn-lg">1</div>
             </div>
             <div class="players-prompt">
-              <div id="players-two" class="btn btn-primary btn-lg">2</div>
+              <div id="players-two" class="btn btn-custom btn-lg">2</div>
             </div>
             <div class="selection-prompt token-prompt">Please Select Token for Player 1:</div>
             <div class="token-prompt">
-              <div id="player-x" class="btn btn-primary btn-lg">X</div>
+              <div id="player-x" class="btn btn-custom btn-lg">X</div>
             </div>
             <div class="token-prompt">
-              <div id="player-o" class="btn btn-primary btn-lg">O</div>
+              <div id="player-o" class="btn btn-custom btn-lg">O</div>
             </div>
             <div class='selection-prompt difficulty-prompt'>Please Select Difficulty:</div>
             <div class="difficulty-prompt">
-              <div id='easy' class='btn btn-primary btn-lg'>Easy</div>
+              <div id='easy' class='btn btn-custom btn-lg'>Easy</div>
             </div>
             <div class="difficulty-prompt">
-              <div id='medium' class='btn btn-primary btn-lg'>Intermediate</div>
+              <div id='medium' class='btn btn-custom btn-lg'>Intermediate</div>
             </div>
             <div class="difficulty-prompt">
-              <div id='hard' class='btn btn-primary btn-lg'>Unbeatable</div>
+              <div id='hard' class='btn btn-custom btn-lg'>Unbeatable</div>
             </div>
             <div id="result"></div>
           </div>

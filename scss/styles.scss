@@ -1,20 +1,31 @@
-$primary-color: #555;
+$primary-color: #078898;
+$secondary-color: #66B9BF;
+$complementary-color: #EEAA7B;
+$accent-color: #E37222;
 
 body {
     background-color: $primary-color;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: hsl(0, 0%, 95%);
 }
 
 .container {
-    background-color: white;
+    background-color: $primary-color;
     margin-top: 2rem;
     margin-bottom: 1.25rem;
 }
 
+#main-square {
+    //background-color: hsl(0, 0%, 95%);
+}
+
 .square {
+    background-color: hsl(0, 0%, 95%);
     font-size: 3rem;
-    border: 1px solid black;
+    border: 1px solid $primary-color;
     height: 9rem;
     padding-top: 1.563rem; //25px
+    color: $accent-color;
 }
 
 .top-row {
@@ -37,20 +48,23 @@ body {
 #menu-holder {
     position: absolute;
     width:100%;
-    top: 5.313rem; //85px
+    top: 5.75rem; //92px
     margin-left: -0.9375rem; //-15px
 }
 
 #menu {
-    background-color: rgba(63, 121, 191, 0.9);
+    background-color: $secondary-color;
+    opacity: 0.9;
     width: 18.75rem; //300px
     margin: auto;
     padding-top: 4.688rem; //75px
     padding-bottom: 4.688rem; //75px
+    padding-left: 1rem; //12px
+    padding-right: 1rem; //12px
     text-align: center;
-    border-radius: 0.3125rem; //5px
+    //border-radius: 0.3125rem; //5px
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 #result {
@@ -76,6 +90,7 @@ body {
 #current-player {
     display: none;
     font-size: 1.5rem;
+    margin-top: -1.25rem;
 }
 
 .animated {
@@ -99,4 +114,16 @@ body {
 .pulse {
     animation-name: pulse;
     animation-duration: 1s;
+}
+
+.btn-custom {
+  border-radius: 0rem;
+  background-color: $accent-color;
+  color: #fff;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.btn-custom:hover {
+  background-color: $complementary-color;
 }

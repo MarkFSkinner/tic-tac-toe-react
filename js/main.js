@@ -50,13 +50,13 @@ function selectPlayerToken(token) {
     if (state.numPlayers === 1) {
         state.computerToken = secondToken;
         $('.difficulty-prompt').css('display', 'block');
-        $('#menu-holder').css('top', '1.875rem'); //30px
+        $('#menu-holder').css('top', '3.75rem');
     } else if (state.numPlayers === 2) {
         state.playerTwoToken = secondToken;
         $('#menu').css('display', 'none');
         $('#current-player').css('display', 'block');
         $('#current-player').html('CURRENT PLAYER: 1');
-        $('#menu-holder').css('top', '7.813rem'); //125px
+        $('#menu-holder').css('top', '7.75rem');
         state.gameStarted = true;
     }
     $('.token-prompt').css('display', 'none');
@@ -68,7 +68,7 @@ function selectDifficulty(diffArr) {
             state.difficultyLevel = diffArr[i];
             $('.difficulty-prompt').css('display', 'none');
             $('#menu').css('display', 'none');
-            $('#menu-holder').css('top', '7.813rem'); //125px
+            $('#menu-holder').css('top', '8.25rem');
             state.gameStarted = true;
         });
     }
@@ -92,9 +92,7 @@ function checkWin(player) {
             match = 0;
         }
     }
-    if (match !== 3) {
-        return false;
-    }
+    return false;
 }
 
 function gameWon() {
@@ -125,7 +123,8 @@ function selectSquare(square) {
             }
             if (gameWon()) {
                 for (let i = 0; i < state.win.length; i++) {
-                    $('#' + state.win[i]).css('background-color', 'green');
+                    $('#' + state.win[i]).css('background-color', '#E37222');
+                    $('#' + state.win[i]).css('color', 'hsl(0, 0%, 95%)');
                 }
                 if (state.numPlayers === 1) {
                     $('#result').html('YOU WIN!!!');
@@ -138,7 +137,7 @@ function selectSquare(square) {
                 }
                 $('#menu').css('display', 'block');
                 $('#result').css('display', 'block');
-                $('#menu').css('background-color', 'rgba(16, 136, 18, 0.9)');
+                $('#menu').css('background-color', '#078898');
                 $('#menu').addClass('animated pulse');
             }
             state.availableMoves = remove(state.availableMoves, currentSquare);
@@ -178,10 +177,11 @@ function computerTurn() {
             state.computerMoves.push(move);
             if (gameWon()) {
                 for (let i = 0; i < state.win.length; i++) {
-                    $('#' + state.win[i]).css('background-color', 'red');
+                    $('#' + state.win[i]).css('background-color', '#EEAA7B');
+                    $('#' + state.win[i]).css('color', 'hsl(0, 0%, 95%)');
                 }
                 $('#menu').css('display', 'block');
-                $('#menu').css('background-color', 'rgba(161, 19, 16, 0.9)');
+                $('#menu').css('background-color', '#66B9BF');
                 $('#menu').addClass('animated pulse');
                 $('#result').html('YOU LOSE!');
                 $('#result').css('display', 'block');
@@ -220,7 +220,7 @@ function restart() {
     state.playerTwoMoves = [];
     state.computerMoves = [];
     $('.square').html('');
-    $('#menu').css('background-color', 'rgba(63, 121, 191, 0.9)');
+    $('#menu').css('background-color', '#66B9BF');
     $('.token-prompt').css('display', 'none');
     $('.difficulty-prompt').css('display', 'none');
 }
@@ -311,24 +311,23 @@ $(function() {
     $('#replay').on('click', function() {
         if (state.gameStarted) {
             restart();
-            if (state.numPlayers === 2) {
-                $('#menu-holder').css('top', '7.813rem'); //125px
-            }
             $('#menu').css('display', 'none');
             $('.players-prompt').css('display', 'none');
             $('#current-player').html('CURRENT PLAYER: 1');
+            $('.square').css('color', '#E37222');
             state.gameStarted = true;
         }
     });
 
     $('#reset').on('click', function() {
         restart();
-        $('#menu-holder').css('top', '5.313rem'); //85px
+        $('#menu-holder').css('top', '5.75rem');
         $('#menu').css('display', 'block');
         $('#menu').removeClass('animated pulse');
         $('#result').html('');
         $('.players-prompt').css('display', 'inline-block');
         $('#current-player').css('display', 'none');
+        $('.square').css('color', '#E37222');
         state.gameStarted = false;
     });
 })
