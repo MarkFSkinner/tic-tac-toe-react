@@ -5,10 +5,10 @@ const Menu = props => (
     <div id='menu'>
       <div className='selection-prompt players-prompt'>Please Select # of Players:</div>
       <div className='players-prompt'>
-        <div id='players-one' className='btn btn-custom btn-lg'>1</div>
+        <div id='players-one' className='btn btn-custom btn-lg' onClick={props.selectNumPlayers}>1</div>
       </div>
       <div className='players-prompt'>
-        <div id='players-two' className='btn btn-custom btn-lg'>2</div>
+        <div id='players-two' className='btn btn-custom btn-lg' onClick={props.selectNumPlayers}>2</div>
       </div>
       <div className='selection-prompt token-prompt'>Please Select Token for Player 1:</div>
       <div className='token-prompt'>

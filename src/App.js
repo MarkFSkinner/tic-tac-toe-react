@@ -31,6 +31,25 @@ class App extends React.Component {
     win: undefined
   }
 
+  selectNumPlayers = (e) => {
+    if (e.target.id === 'players-one') {
+      this.setState({
+        numPlayers: 1
+      });
+    } else if (e.target.id === 'players-two') {
+      this.setState({
+        numPlayers: 2
+      });
+    }
+    let playerSelection = document.getElementsByClassName('players-prompt');
+    for (let i = 0; i < playerSelection.length; i++) {
+      playerSelection[i].style.display = 'none';
+    }
+    let tokenSelection = document.getElementsByClassName('token-prompt');
+    for (let i = 0; i < tokenSelection.length; i++) {
+      tokenSelection[i].style.display = 'inline-block';
+    }
+  }
 
   render() {
     return (
@@ -38,7 +57,9 @@ class App extends React.Component {
         <CurrentPlayer />
         <Board />
         <Controls />
-        <Menu />
+        <Menu
+          selectNumPlayers={this.selectNumPlayers}
+        />
       </div>
     );
   }
