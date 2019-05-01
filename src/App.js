@@ -68,35 +68,40 @@ class App extends React.Component {
       this.setState({
         computerToken: secondToken
       });
-      //$('.difficulty-prompt').css('display', 'block');
       let difficultySelection = document.getElementsByClassName('difficulty-prompt');
       for (let i = 0; i < difficultySelection.length; i++) {
         difficultySelection[i].style.display = 'block';
       }
-      //$('#menu-holder').css('top', '3.75rem');
       document.getElementById('menu-holder').style.top = '3.75rem';
     } else if (this.state.numPlayers === 2) {
       this.setState({
         playerTwoToken: secondToken,
         gameStarted: true
       });
-      //$('#menu').css('display', 'none');
       document.getElementById('menu').style.display = 'none';
-      //$('#current-player').css('display', 'block');
       document.getElementById('current-player').style.display = 'block';
-      //$('#current-player').html('CURRENT PLAYER: 1');
       document.getElementById('current-player').html = 'CURRENT PLAYER: 1';
-      //$('#menu-holder').css('top', '7.75rem');
       document.getElementById('menu-holder').style.top = '7.75rem';
-      //state.gameStarted = true;
     }
-    //$('.token-prompt').css('display', 'none');
     let tokenSelection = document.getElementsByClassName('token-prompt');
     for (let i = 0; i < tokenSelection.length; i++) {
       tokenSelection[i].style.display = 'none';
     }
   }
 
+
+  selectDifficulty = (e) => {
+    this.setState({
+      difficultyLevel: e.target.id,
+      gameStarted: true
+    });
+    let difficultySelection = document.getElementsByClassName('difficulty-prompt');
+    for (let i = 0; i < difficultySelection.length; i++) {
+      difficultySelection[i].style.display = 'none';
+    }
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('menu-holder').style.top = '8.25rem';
+  }
 
   render() {
     return (
@@ -107,6 +112,7 @@ class App extends React.Component {
         <Menu
           selectNumPlayers={this.selectNumPlayers}
           selectPlayerToken={this.selectPlayerToken}
+          selectDifficulty={this.selectDifficulty}
         />
       </div>
     );

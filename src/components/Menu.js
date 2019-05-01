@@ -19,13 +19,13 @@ const Menu = props => (
       </div>
       <div className='selection-prompt difficulty-prompt'>Please Select Difficulty:</div>
       <div className='difficulty-prompt'>
-        <div id='easy' className='btn btn-custom btn-lg'>Easy</div>
+        <div id='easy' className='btn btn-custom btn-lg' onClick={props.selectDifficulty}>Easy</div>
       </div>
       <div className='difficulty-prompt'>
-        <div id='medium' className='btn btn-custom btn-lg'>Intermediate</div>
+        <div id='medium' className='btn btn-custom btn-lg' onClick={props.selectDifficulty}>Intermediate</div>
       </div>
       <div className='difficulty-prompt'>
-        <div id='hard' className='btn btn-custom btn-lg'>Unbeatable</div>
+        <div id='hard' className='btn btn-custom btn-lg' onClick={props.selectDifficulty}>Unbeatable</div>
       </div>
       <div id='result'></div>
     </div>
