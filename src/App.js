@@ -31,6 +31,13 @@ class App extends React.Component {
     win: undefined
   }
 
+  changeClassDisplay = (className, displayType) => {
+    let selection = document.getElementsByClassName(className);
+    for (let i = 0; i < selection.length; i++) {
+      selection[i].style.display = displayType;
+    }
+  }
+
   selectNumPlayers = (e) => {
     if (e.target.id === 'players-one') {
       this.setState({
@@ -41,14 +48,8 @@ class App extends React.Component {
         numPlayers: 2
       });
     }
-    let playerSelection = document.getElementsByClassName('players-prompt');
-    for (let i = 0; i < playerSelection.length; i++) {
-      playerSelection[i].style.display = 'none';
-    }
-    let tokenSelection = document.getElementsByClassName('token-prompt');
-    for (let i = 0; i < tokenSelection.length; i++) {
-      tokenSelection[i].style.display = 'inline-block';
-    }
+    this.changeClassDisplay('players-prompt', 'none');
+    this.changeClassDisplay('token-prompt', 'inline-block');
   }
 
   selectPlayerToken = (e) => {
@@ -68,10 +69,7 @@ class App extends React.Component {
       this.setState({
         computerToken: secondToken
       });
-      let difficultySelection = document.getElementsByClassName('difficulty-prompt');
-      for (let i = 0; i < difficultySelection.length; i++) {
-        difficultySelection[i].style.display = 'block';
-      }
+      this.changeClassDisplay('difficulty-prompt', 'block');
       document.getElementById('menu-holder').style.top = '3.75rem';
     } else if (this.state.numPlayers === 2) {
       this.setState({
@@ -87,10 +85,7 @@ class App extends React.Component {
         squares[i].classList.add('clickable');
       }
     }
-    let tokenSelection = document.getElementsByClassName('token-prompt');
-    for (let i = 0; i < tokenSelection.length; i++) {
-      tokenSelection[i].style.display = 'none';
-    }
+    this.changeClassDisplay('token-prompt', 'none');
   }
 
   selectDifficulty = (e) => {
@@ -98,10 +93,7 @@ class App extends React.Component {
       difficultyLevel: e.target.id,
       gameStarted: true
     });
-    let difficultySelection = document.getElementsByClassName('difficulty-prompt');
-    for (let i = 0; i < difficultySelection.length; i++) {
-      difficultySelection[i].style.display = 'none';
-    }
+    this.changeClassDisplay('difficulty-prompt', 'none');
     document.getElementById('menu').style.display = 'none';
     document.getElementById('menu-holder').style.top = '8.25rem';
     let squares = document.getElementsByClassName('square');
@@ -306,21 +298,16 @@ class App extends React.Component {
       playerTwoMoves: [],
       computerMoves: []
     });
-    let squares = document.getElementsByClassName('square');
+    document.getElementById('menu').style.backgroundColor = '#66B9BF';
+    this.changeClassDisplay('token-prompt', 'none');
+    this.changeClassDisplay('difficulty-prompt', 'none');
+    /*let squares = document.getElementsByClassName('square');
     for (let i = 0; i < squares.length; i++) {
+      squares[i].style.color = '#E37222';
       squares[i].innerHTML = '';
       squares[i].classList.add('clickable');
-    }
-    document.getElementById('menu').style.backgroundColor = '#66B9BF';
-    let tokenSelection = document.getElementsByClassName('token-prompt');
-    for (let i = 0; i < tokenSelection.length; i++) {
-      tokenSelection[i].style.display = 'none';
-    }
-    let difficultySelection = document.getElementsByClassName('difficulty-prompt');
-    for (let i = 0; i < difficultySelection.length; i++) {
-      difficultySelection[i].style.display = 'none';
-    }
-  }
+    }*/
+}
 
   minimax = (newGameState, player) => {
     if (this.checkWin(newGameState.playerOneMoves)) {
@@ -391,14 +378,13 @@ class App extends React.Component {
     if (this.state.gameStarted) {
       this.restart();
       document.getElementById('menu').style.display = 'none';
-      let playerSelection = document.getElementsByClassName('players-prompt');
-      for (let i = 0; i < playerSelection.length; i++) {
-        playerSelection[i].style.display = 'none';
-      }
+      this.changeClassDisplay('players-prompt', 'none');
       document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
       let squares = document.getElementsByClassName('square');
       for (let i = 0; i < squares.length; i++) {
         squares[i].style.color = '#E37222';
+        squares[i].innerHTML = '';
+        squares[i].classList.add('clickable');
       }
       this.setState({
         gameStarted: true
@@ -412,14 +398,12 @@ class App extends React.Component {
     document.getElementById('menu').style.display = 'block';
     document.getElementById('menu').classList.remove('animated','pulse');
     document.getElementById('result').innerHTML = '';
-    let playerSelection = document.getElementsByClassName('players-prompt');
-    for (let i = 0; i < playerSelection.length; i++) {
-      playerSelection[i].style.display = 'inline-block';
-    }
+    this.changeClassDisplay('players-prompt', 'inline-block');
     document.getElementById('current-player').style.display = 'none';
     let squares = document.getElementsByClassName('square');
     for (let i = 0; i < squares.length; i++) {
       squares[i].style.color = '#E37222';
+      squares[i].innerHTML = '';
     }
     this.setState({
       gameStarted: false
