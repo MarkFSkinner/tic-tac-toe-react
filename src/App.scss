@@ -29,6 +29,10 @@ body {
     color: $accent-color;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .top-row {
     margin-top: 1rem;
 }

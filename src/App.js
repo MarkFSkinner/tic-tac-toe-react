@@ -82,6 +82,10 @@ class App extends React.Component {
       document.getElementById('current-player').style.display = 'block';
       document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
       document.getElementById('menu-holder').style.top = '7.75rem';
+      let squares = document.getElementsByClassName('square');
+      for (let i = 0; i < squares.length; i++) {
+        squares[i].classList.add('clickable');
+      }
     }
     let tokenSelection = document.getElementsByClassName('token-prompt');
     for (let i = 0; i < tokenSelection.length; i++) {
@@ -100,6 +104,10 @@ class App extends React.Component {
     }
     document.getElementById('menu').style.display = 'none';
     document.getElementById('menu-holder').style.top = '8.25rem';
+    let squares = document.getElementsByClassName('square');
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].classList.add('clickable');
+    }
   }
 
   checkWin = (player) => {
@@ -142,6 +150,13 @@ class App extends React.Component {
 
   gameWon = () => {
     if (this.checkWin(this.state.playerOneMoves) || this.checkWin(this.state.computerMoves) || this.checkWin(this.state.playerTwoMoves)) {
+      document.getElementById('menu').style.display = 'block';
+      document.getElementById('menu').classList.add('animated','pulse');
+      document.getElementById('result').style.display = 'block';
+      let squares = document.getElementsByClassName('square');
+      for (let i = 0; i < squares.length; i++) {
+        squares[i].classList.remove('clickable');
+      }
       return true;
     } else {
       return false;
@@ -153,18 +168,20 @@ class App extends React.Component {
   }
 
   selectSquare = async (e) => {
-    if(!this.gameWon()) {
+    if(!this.gameWon() && this.state.gameStarted) {
       let currentSquare = e.target.id;
       currentSquare = Number.parseFloat(currentSquare);
       if (this.state.availableMoves.indexOf(currentSquare) !== -1) {
         if (this.state.currentPlayer === 'playerOne') {
           document.getElementById(currentSquare).innerHTML = this.state.playerOneToken;
+          document.getElementById(currentSquare).classList.remove('clickable');
           await this.setState({
             playerOneMoves: [...this.state.playerOneMoves, currentSquare]
           });
           this.checkWin(this.state.playerOneMoves);
         } else if (this.state.currentPlayer === 'playerTwo') {
           document.getElementById(currentSquare).innerHTML = this.state.playerTwoToken;
+          document.getElementById(currentSquare).classList.remove('clickable');
           await this.setState({
             playerTwoMoves: [...this.state.playerTwoMoves, currentSquare]
           });
@@ -184,10 +201,7 @@ class App extends React.Component {
               document.getElementById('result').innerHTML = 'PLAYER TWO WINS!!!';
             }
           }
-          document.getElementById('menu').style.display = 'block';
-          document.getElementById('result').style.display = 'block';
           document.getElementById('menu').style.backgroundColor = '#078898';
-          document.getElementById('menu').classList.add('animated','pulse');
         }
         await this.setState({
           availableMoves: this.remove(this.state.availableMoves, currentSquare)
@@ -257,6 +271,7 @@ class App extends React.Component {
       }
       if (this.state.availableMoves.indexOf(move) !== -1) {
         document.getElementById(move).innerHTML = this.state.computerToken;
+        document.getElementById(move).classList.remove('clickable');
         await this.setState({
           computerMoves: [...this.state.computerMoves, move]
         });
@@ -266,11 +281,8 @@ class App extends React.Component {
             document.getElementById(this.state.win[i]).style.color = 'hsl(0, 0%, 95%)';
             document.getElementById(move).innerHTML = this.state.computerToken;
           }
-          document.getElementById('menu').style.display = 'block';
           document.getElementById('menu').style.backgroundColor = '#66B9BF';
-          document.getElementById('menu').classList.add('animated','pulse');
           document.getElementById('result').innerHTML = 'YOU LOSE!';
-          document.getElementById('result').style.display = 'block';
         }
         await this.setState({
           availableMoves: this.remove(this.state.availableMoves, move)
@@ -297,6 +309,7 @@ class App extends React.Component {
     let squares = document.getElementsByClassName('square');
     for (let i = 0; i < squares.length; i++) {
       squares[i].innerHTML = '';
+      squares[i].classList.add('clickable');
     }
     document.getElementById('menu').style.backgroundColor = '#66B9BF';
     let tokenSelection = document.getElementsByClassName('token-prompt');
