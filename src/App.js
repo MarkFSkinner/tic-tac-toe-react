@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import styles from './App.scss';
 import CurrentPlayer from './components/CurrentPlayer';
 import Board from './components/Board';
 import Controls from './components/Controls';
@@ -183,8 +184,8 @@ class App extends React.Component {
         document.getElementById(currentSquare).classList.remove('clickable');
         if (this.gameWon()) {
           for (let i = 0; i < this.state.win.length; i++) {
-            document.getElementById(this.state.win[i]).style.backgroundColor = '#E37222';
-            document.getElementById(this.state.win[i]).style.color = 'hsl(0, 0%, 95%)';
+            document.getElementById(this.state.win[i]).style.backgroundColor = styles.accentColor;
+            document.getElementById(this.state.win[i]).style.color = styles.offWhiteColor;
           }
           if (this.state.numPlayers === 1) {
             document.getElementById('result').innerHTML = 'YOU WIN!!!';
@@ -195,7 +196,7 @@ class App extends React.Component {
               document.getElementById('result').innerHTML = 'PLAYER TWO WINS!!!';
             }
           }
-          document.getElementById('menu').style.backgroundColor = '#078898';
+          document.getElementById('menu').style.backgroundColor = styles.primaryColor;
         } else {
           await this.setState({
             availableMoves: this.remove(this.state.availableMoves, currentSquare)
@@ -274,11 +275,11 @@ class App extends React.Component {
         });
         if (this.gameWon()) {
           for (let i = 0; i < this.state.win.length; i++) {
-            document.getElementById(this.state.win[i]).style.backgroundColor = '#EEAA7B';
-            document.getElementById(this.state.win[i]).style.color = 'hsl(0, 0%, 95%)';
+            document.getElementById(this.state.win[i]).style.backgroundColor = styles.complementaryColor;
+            document.getElementById(this.state.win[i]).style.color = styles.offWhiteColor;
             document.getElementById(move).innerHTML = this.state.computerToken;
           }
-          document.getElementById('menu').style.backgroundColor = '#66B9BF';
+          document.getElementById('menu').style.backgroundColor = styles.secondaryColor;
           document.getElementById('result').innerHTML = 'YOU LOSE!';
         } else {
           await this.setState({

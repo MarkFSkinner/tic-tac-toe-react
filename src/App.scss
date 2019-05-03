@@ -2,11 +2,12 @@ $primary-color: #078898;
 $secondary-color: #66B9BF;
 $complementary-color: #EEAA7B;
 $accent-color: #E37222;
+$off-white-color: hsl(0, 0%, 95%);
 
 body {
     background-color: $primary-color;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    color: hsl(0, 0%, 95%);
+    color: $off-white-color;
 }
 
 .container {
@@ -21,7 +22,7 @@ body {
 }
 
 .square {
-    background-color: hsl(0, 0%, 95%);
+    background-color: $off-white-color;
     font-size: 3rem;
     border: 1px solid $primary-color;
     height: 9rem;
@@ -66,7 +67,7 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 2rem;
 }
 
@@ -149,4 +150,12 @@ body {
     #main-square {
         width: 50%;
     }
+}
+
+:export {
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    complementaryColor: $complementary-color;
+    accentColor: $accent-color;
+    offWhiteColor: $off-white-color;
 }
