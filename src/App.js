@@ -399,6 +399,7 @@ class App extends React.Component {
     this.changeClassDisplay('players-prompt', 'inline-block');
     this.changeClassDisplay('token-prompt', '');
     this.changeClassDisplay('difficulty-prompt', '');
+    this.removeClickableClass('square');
     if (this.state.numPlayers === 2) {
       document.getElementById('current-player').style.display = '';
     }
