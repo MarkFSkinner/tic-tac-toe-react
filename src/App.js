@@ -38,6 +38,20 @@ class App extends React.Component {
     }
   }
 
+  addClickableClass = (className) => {
+    let target = document.getElementsByClassName(className);
+    for (let i = 0; i < target.length; i++) {
+      target[i].classList.add('clickable');
+    }
+  }
+
+  removeClickableClass = (className) => {
+    let target = document.getElementsByClassName(className);
+    for (let i = 0; i < target.length; i++) {
+      target[i].classList.remove('clickable');
+    }
+  }
+
   selectNumPlayers = (e) => {
     if (e.target.id === 'players-one') {
       this.setState({
@@ -80,10 +94,7 @@ class App extends React.Component {
       document.getElementById('current-player').style.display = 'block';
       document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
       document.getElementById('menu-holder').style.top = '7.75rem';
-      let squares = document.getElementsByClassName('square');
-      for (let i = 0; i < squares.length; i++) {
-        squares[i].classList.add('clickable');
-      }
+      this.addClickableClass('square');
     }
     this.changeClassDisplay('token-prompt', 'none');
   }
@@ -96,10 +107,7 @@ class App extends React.Component {
     this.changeClassDisplay('difficulty-prompt', 'none');
     document.getElementById('menu').style.display = 'none';
     document.getElementById('menu-holder').style.top = '8.25rem';
-    let squares = document.getElementsByClassName('square');
-    for (let i = 0; i < squares.length; i++) {
-      squares[i].classList.add('clickable');
-    }
+    this.addClickableClass('square');
   }
 
   checkWin = (player) => {
@@ -145,10 +153,7 @@ class App extends React.Component {
       document.getElementById('menu').style.display = 'block';
       document.getElementById('menu').classList.add('animated','pulse');
       document.getElementById('result').style.display = 'block';
-      let squares = document.getElementsByClassName('square');
-      for (let i = 0; i < squares.length; i++) {
-        squares[i].classList.remove('clickable');
-      }
+      this.removeClickableClass('square');
       return true;
     } else {
       return false;
@@ -239,7 +244,7 @@ class App extends React.Component {
   }
 
   computerTurn = async () => {
-    if (this.state.availableMoves.length > 0 && !this.gameWon()) {
+    if (this.state.availableMoves.length > 0) {
       let move;
       if (this.state.difficultyLevel === 'easy') {
         move = Math.floor(Math.random() * (9));
@@ -275,39 +280,16 @@ class App extends React.Component {
           }
           document.getElementById('menu').style.backgroundColor = '#66B9BF';
           document.getElementById('result').innerHTML = 'YOU LOSE!';
+        } else {
+          await this.setState({
+            availableMoves: this.remove(this.state.availableMoves, move)
+          });
         }
-        await this.setState({
-          availableMoves: this.remove(this.state.availableMoves, move)
-        });
       } else {
         this.computerTurn();
       }
     }
   }
-
-  restart = () => {
-    if (this.gameWon()) {
-      for (let i = 0; i < this.state.win.length; i++) {
-        document.getElementById(this.state.win[i]).style.backgroundColor = '';
-      }
-    }
-    this.setState({
-      currentPlayer: 'playerOne',
-      availableMoves: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      playerOneMoves: [],
-      playerTwoMoves: [],
-      computerMoves: []
-    });
-    document.getElementById('menu').style.backgroundColor = '#66B9BF';
-    this.changeClassDisplay('token-prompt', 'none');
-    this.changeClassDisplay('difficulty-prompt', 'none');
-    /*let squares = document.getElementsByClassName('square');
-    for (let i = 0; i < squares.length; i++) {
-      squares[i].style.color = '#E37222';
-      squares[i].innerHTML = '';
-      squares[i].classList.add('clickable');
-    }*/
-}
 
   minimax = (newGameState, player) => {
     if (this.checkWin(newGameState.playerOneMoves)) {
@@ -374,21 +356,37 @@ class App extends React.Component {
     return output;
   }
 
+  restart = () => {
+    if (this.gameWon()) {
+      for (let i = 0; i < this.state.win.length; i++) {
+        document.getElementById(this.state.win[i]).style.backgroundColor = '';
+        document.getElementById(this.state.win[i]).style.color = '';
+      }
+    }
+    let squares = document.getElementsByClassName('square');
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].innerHTML = '';
+    }
+    document.getElementById('menu').style.backgroundColor = '';
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('result').style.display = '';
+    this.setState({
+      currentPlayer: 'playerOne',
+      availableMoves: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      playerOneMoves: [],
+      playerTwoMoves: [],
+      computerMoves: []
+    });
+  }
+
   handlePlayClick = () => {
     if (this.state.gameStarted) {
       this.restart();
       document.getElementById('menu').style.display = 'none';
-      this.changeClassDisplay('players-prompt', 'none');
-      document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
-      let squares = document.getElementsByClassName('square');
-      for (let i = 0; i < squares.length; i++) {
-        squares[i].style.color = '#E37222';
-        squares[i].innerHTML = '';
-        squares[i].classList.add('clickable');
+      if (this.state.numPlayers === 2) {
+        document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
       }
-      this.setState({
-        gameStarted: true
-      });
+      this.addClickableClass('square');
     }
   }
 
@@ -397,13 +395,9 @@ class App extends React.Component {
     document.getElementById('menu-holder').style.top = '5.75rem';
     document.getElementById('menu').style.display = 'block';
     document.getElementById('menu').classList.remove('animated','pulse');
-    document.getElementById('result').innerHTML = '';
     this.changeClassDisplay('players-prompt', 'inline-block');
-    document.getElementById('current-player').style.display = 'none';
-    let squares = document.getElementsByClassName('square');
-    for (let i = 0; i < squares.length; i++) {
-      squares[i].style.color = '#E37222';
-      squares[i].innerHTML = '';
+    if (this.state.numPlayers === 2) {
+      document.getElementById('current-player').style.display = '';
     }
     this.setState({
       gameStarted: false
