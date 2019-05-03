@@ -1,3 +1,13 @@
+# Tic Tac Toe Game (React)
+
+Part of the freeCodeCamp front end developer curriculum
+
+See the requirements [here](https://learn.freecodecamp.org/coding-interview-prep/take-home-projects/build-a-tic-tac-toe-game/)
+
+### Please visit my web app [here!]()
+
+/////////////////////////////////////////////////////////////////////////////////
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
