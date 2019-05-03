@@ -166,19 +166,16 @@ class App extends React.Component {
       if (this.state.availableMoves.indexOf(currentSquare) !== -1) {
         if (this.state.currentPlayer === 'playerOne') {
           document.getElementById(currentSquare).innerHTML = this.state.playerOneToken;
-          document.getElementById(currentSquare).classList.remove('clickable');
           await this.setState({
             playerOneMoves: [...this.state.playerOneMoves, currentSquare]
           });
-          this.checkWin(this.state.playerOneMoves);
         } else if (this.state.currentPlayer === 'playerTwo') {
           document.getElementById(currentSquare).innerHTML = this.state.playerTwoToken;
-          document.getElementById(currentSquare).classList.remove('clickable');
           await this.setState({
             playerTwoMoves: [...this.state.playerTwoMoves, currentSquare]
           });
-          this.checkWin(this.state.playerTwoMoves);
         }
+        document.getElementById(currentSquare).classList.remove('clickable');
         if (this.gameWon()) {
           for (let i = 0; i < this.state.win.length; i++) {
             document.getElementById(this.state.win[i]).style.backgroundColor = '#E37222';
@@ -194,26 +191,29 @@ class App extends React.Component {
             }
           }
           document.getElementById('menu').style.backgroundColor = '#078898';
-        }
-        await this.setState({
-          availableMoves: this.remove(this.state.availableMoves, currentSquare)
-        });
-        if (this.state.numPlayers === 1) {
-          this.computerTurn();
-        } else if (this.state.numPlayers === 2 && !this.gameWon() && !this.checkTie()) {
-          if (this.state.currentPlayer === 'playerOne') {
-            await this.setState({
-              currentPlayer: 'playerTwo'
-            });
-            document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 2';
-          } else {
-            await this.setState({
-              currentPlayer: 'playerOne'
-            });
-            document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
+        } else {
+          await this.setState({
+            availableMoves: this.remove(this.state.availableMoves, currentSquare)
+          });
+          if (this.checkTie()) {
+            return;
+          }
+          if (this.state.numPlayers === 1) {
+            this.computerTurn();
+          } else if (this.state.numPlayers === 2) {
+            if (this.state.currentPlayer === 'playerOne') {
+              await this.setState({
+                currentPlayer: 'playerTwo'
+              });
+              document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 2';
+            } else {
+              await this.setState({
+                currentPlayer: 'playerOne'
+              });
+              document.getElementById('current-player').innerHTML = 'CURRENT PLAYER: 1';
+            }
           }
         }
-        this.checkTie();
       }
     }
   }
